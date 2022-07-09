@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
+import { upsertDoggo, updateAdoptedDoggos } from 'src/services/doggos/doggos'
 
 /**
  * The handler function is your code that processes http request events.
@@ -20,13 +20,16 @@ import { logger } from 'src/lib/logger'
  * function, and execution environment.
  */
 export const handler = async (event, context) => {
-  var shit = await axios(
+  var doggos = await axios(
     'https://www.sfspca.org/wp-json/sfspca/v1/filtered-posts/get-adoptions?current-term%5Bid%5D=94&current-term%5Btaxonomy%5D=species&ignored-terms%5Bsfspca-adoption-site%5D%5B%5D=74&ignored-terms%5Bsfspca-adoption-site%5D%5B%5D=128&ignored-terms%5Bsfspca-adoption-site%5D%5B%5D=485&ignored-terms%5Bsfspca-adoption-gender%5D%5B%5D=354&order=ASC&orderby=date&page=1&per_page=100'
   )
 
-  shit.data.items.map((doggo) => {
+  var ids = []
+
+  doggos.data.items.map((doggo) => {
     const re = /[0-9]+/
     var id = Number(doggo.permalink.match(re)[0])
+    ids.push(id)
     var dbDoggo = {
       id: id,
       title: doggo.title,
@@ -42,18 +45,9 @@ export const handler = async (event, context) => {
       jsonThumbsUrls: doggo.thumb,
       lastSeenAt: new Date().toISOString(),
     }
-    db.doggo
-      .upsert({
-        where: {
-          id: id,
-        },
-        update: dbDoggo,
-        create: dbDoggo,
-      })
-      .catch((err) => {
-        logger.error(err)
-      })
+    upsertDoggo(dbDoggo)
   })
+  updateAdoptedDoggos(ids)
 
   return {
     statusCode: 200,
@@ -61,6 +55,6 @@ export const handler = async (event, context) => {
       'Content-Type': 'application/json',
     },
 
-    body: JSON.stringify(shit.data),
+    body: JSON.stringify(doggos.data),
   }
 }

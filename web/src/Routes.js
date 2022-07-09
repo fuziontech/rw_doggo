@@ -9,20 +9,13 @@
 
 import { Private, Router, Route, Set } from '@redwoodjs/router'
 
-import DoggosLayout from 'src/layouts/DoggosLayout'
-
 import BlogLayout from 'src/layouts/BlogLayout'
+import DoggosLayout from 'src/layouts/DoggosLayout'
 import PostsLayout from 'src/layouts/PostsLayout'
 
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={DoggosLayout}>
-        <Route path="/doggos/new" page={DoggoNewDoggoPage} name="newDoggo" />
-        <Route path="/doggos/{id:Int}/edit" page={DoggoEditDoggoPage} name="editDoggo" />
-        <Route path="/doggos/{id:Int}" page={DoggoDoggoPage} name="doggo" />
-        <Route path="/doggos" page={DoggoDoggosPage} name="doggos" />
-      </Set>
       <Route path="/login" page={LoginPage} name="login" />
       <Route path="/signup" page={SignupPage} name="signup" />
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
@@ -33,6 +26,12 @@ const Routes = () => {
           <Route path="/admin/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
           <Route path="/admin/posts/{id:Int}" page={PostPostPage} name="post" />
           <Route path="/admin/posts" page={PostPostsPage} name="posts" />
+        </Set>
+        <Set wrap={DoggosLayout}>
+          <Route path="/admin/doggos/new" page={DoggoNewDoggoPage} name="newDoggo" />
+          <Route path="/admin/doggos/{id:Int}/edit" page={DoggoEditDoggoPage} name="editDoggo" />
+          <Route path="/admin/doggos/{id:Int}" page={DoggoDoggoPage} name="doggo" />
+          <Route path="/admin/doggos" page={DoggoDoggosPage} name="doggos" />
         </Set>
       </Private>
       <Set wrap={BlogLayout}>

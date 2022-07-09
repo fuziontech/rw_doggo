@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -31,4 +31,24 @@ model User {
   salt                String
   resetToken          String?
   resetTokenExpiresAt DateTime?
+}
+
+model Doggo {
+  id             Int       @id @default(autoincrement())
+  title          String?
+  gender         String
+  weightCategory String
+  species        String
+  breed          String
+  color          String
+  location       String
+  site           String
+  permalink      String
+  jsonThumbsUrls Json
+  age            String
+  adoptedAt      DateTime?
+  lastSeenAt     DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @default(now())
+  deletedAt      DateTime?
 }

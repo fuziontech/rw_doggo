@@ -49,6 +49,6 @@ model Doggo {
   adoptedAt      DateTime?
   lastSeenAt     DateTime?
   createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
   deletedAt      DateTime?
 }

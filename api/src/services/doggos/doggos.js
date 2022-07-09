@@ -56,13 +56,16 @@ export const updateAdoptedDoggos = (ids) => {
       where: {
         adoptedAt: null,
       },
+      select: {
+        id: true,
+      },
     })
     .then((dogs) => {
       const knownIds = dogs.map((doggo) => doggo.id)
       const missingIds = knownIds.filter((id) => !ids.includes(id))
-      missingIds
-        .forEach((id) => {
-          db.doggo.update({
+      missingIds.forEach((id) => {
+        db.doggo
+          .update({
             where: {
               id,
             },
@@ -70,14 +73,14 @@ export const updateAdoptedDoggos = (ids) => {
               adoptedAt: new Date(),
             },
           })
-        })
-        .catch((err) => {
-          logger.error(err)
-        })
+          .catch((err) => {
+            logger.error(err)
+          })
+      })
     })
 }
 
-export const findAdoptedDoggos = () => {
+export const adoptedDoggos = () => {
   return db.doggo.findMany({
     where: {
       adoptedAt: {
@@ -87,7 +90,7 @@ export const findAdoptedDoggos = () => {
   })
 }
 
-export const findAvailableDoggos = () => {
+export const availableDoggos = () => {
   return db.doggo.findMany({
     where: {
       adoptedAt: null,
@@ -96,7 +99,7 @@ export const findAvailableDoggos = () => {
 }
 
 // function to find dogs created in the last 24 hours
-export const findRecentDoggos = () => {
+export const recentDoggos = () => {
   return db.doggo.findMany({
     where: {
       createdAt: {

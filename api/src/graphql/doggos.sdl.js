@@ -22,9 +22,9 @@ export const schema = gql`
   type Query {
     doggos: [Doggo!]! @skipAuth
     doggo(id: Int!): Doggo @skipAuth
-    findAdoptedDoggos: [Doggo!]! @skipAuth
-    findAvailableDoggos: [Doggo!]! @skipAuth
-    findRecentDoggos: [Doggo!]! @skipAuth
+    adoptedDoggos: [Doggo!]! @skipAuth
+    availableDoggos: [Doggo!]! @skipAuth
+    recentDoggos: [Doggo!]! @skipAuth
   }
 
   input CreateDoggoInput {

@@ -30,6 +30,14 @@ export const handler = async (event, context) => {
     const re = /[0-9]+/
     var id = Number(doggo.permalink.match(re)[0])
     ids.push(id)
+    var thumbs = []
+    if (Array.isArray(doggo.thumb)) {
+      thumbs = doggo.thumb
+    } else if (doggo.thumb instanceof Map) {
+      doggo.thumb.forEach((v, _) => {
+        thumbs.push(v)
+      })
+    }
     var dbDoggo = {
       id: id,
       title: doggo.title,
@@ -42,7 +50,7 @@ export const handler = async (event, context) => {
       site: doggo.tags.site,
       permalink: doggo.permalink,
       age: doggo.age,
-      jsonThumbsUrls: doggo.thumb,
+      jsonThumbsUrls: thumbs,
       lastSeenAt: new Date().toISOString(),
     }
     upsertDoggo(dbDoggo)

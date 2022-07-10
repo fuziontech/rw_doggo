@@ -52,11 +52,13 @@ const DoggoListing = ({ doggo }) => {
             return (
               <div key={thumb} className="row">
                 <div className="col s6">
-                  <img
-                    className="w-64 h-64 flex-shrink-0 mx-auto rounded-lg"
-                    src={thumb}
-                    alt="cute doggo"
-                  />
+                  <a href={thumb}>
+                    <img
+                      className="w-64 h-64 flex-shrink-0 mx-auto rounded-lg"
+                      src={thumb}
+                      alt="cute doggo"
+                    />
+                  </a>
                 </div>
               </div>
             )

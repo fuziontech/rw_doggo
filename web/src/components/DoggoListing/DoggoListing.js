@@ -1,5 +1,4 @@
 const DoggoListing = ({ doggo }) => {
-  console.log(doggo.jsonThumbsUrls)
   return (
     <figure className="md:flex rounded-xl p-8 md:p-0">
       <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">

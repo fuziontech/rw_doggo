@@ -29,7 +29,6 @@ const ContactPage = () => {
   })
 
   const onSubmit = (data) => {
-    console.log(data)
     create({ variables: { input: data } })
   }
 

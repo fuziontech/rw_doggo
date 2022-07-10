@@ -72,34 +72,34 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ availableDoggos, recentDoggos, adoptedDoggos }) => {
   return (
-    <ul>
-      <h4>🥺 Recently adopted Doggos 🏡</h4>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h4 className="text-4xl">🥺 Recently adopted Doggos 🏡</h4>
       <p>{adoptedDoggos.length} adopted doggos</p>
       <div className="row">
-        <ul>
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {adoptedDoggos.map((item) => {
             return <DoggoListing key={item.id} doggo={item} />
           })}
         </ul>
       </div>
-      <h4>new doggos 🐕</h4>
+      <h4 className="text-4xl">new doggos 🐕</h4>
       <p>There are {recentDoggos.length} NEW DOGGOS</p>
       <div className="row">
-        <ul>
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {recentDoggos.map((item) => {
             return <DoggoListing key={item.id} doggo={item} />
           })}
         </ul>
       </div>
-      <h4>available doggos 🐶</h4>
+      <h4 className="text-4xl">available doggos 🐶</h4>
       <p>There are {availableDoggos.length} doggos here</p>
       <div className="row">
-        <ul>
+        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {availableDoggos.map((item) => {
             return <DoggoListing key={item.id} doggo={item} />
           })}
         </ul>
       </div>
-    </ul>
+    </div>
   )
 }

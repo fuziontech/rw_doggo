@@ -30,7 +30,7 @@ const BlogLayout = ({ children }) => {
               <Link to={routes.contact()}>Contact</Link>
             </li>
             <li>
-              <Link to={routes.doggos()}>Doggos</Link>
+              <Link to={routes.listings()}>Doggos</Link>
             </li>
           </ul>
         </nav>

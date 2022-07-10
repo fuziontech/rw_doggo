@@ -1,10 +1,15 @@
 const DoggoListing = ({ doggo }) => {
   console.log(doggo.jsonThumbsUrls)
   return (
-    <div className="row">
-      <li>
+    <figure className="md:flex rounded-xl p-8 md:p-0">
+      <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
         <h1>
-          <a href={doggo.permalink}>{doggo.title}</a>
+          <a
+            className="text-lg text-sky-500 dark:text-sky-400"
+            href={doggo.permalink}
+          >
+            {doggo.title}
+          </a>
         </h1>
         <div className="row col s8">
           <table>
@@ -40,10 +45,6 @@ const DoggoListing = ({ doggo }) => {
               <td>Site:</td>
               <td>{doggo.site}</td>
             </tr>
-            <tr>
-              <td>Last seen:</td>
-              <td>{doggo.lastSeen}</td>
-            </tr>
           </table>
         </div>
         <div className="row">
@@ -51,14 +52,18 @@ const DoggoListing = ({ doggo }) => {
             return (
               <div key={thumb} className="row">
                 <div className="col s6">
-                  <img src={thumb} alt="cute doggo" />
+                  <img
+                    className="w-64 h-64 flex-shrink-0 mx-auto rounded-lg"
+                    src={thumb}
+                    alt="cute doggo"
+                  />
                 </div>
               </div>
             )
           })}
         </div>
       </li>
-    </div>
+    </figure>
   )
 }
 

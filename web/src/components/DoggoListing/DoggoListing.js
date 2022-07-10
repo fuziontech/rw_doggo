@@ -3,7 +3,7 @@ const DoggoListing = ({ doggo }) => {
   return (
     <figure className="md:flex rounded-xl p-8 md:p-0">
       <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-        <h1>
+        <h1 className="text-lg font-bold">
           <a
             className="text-lg text-sky-500 dark:text-sky-400"
             href={doggo.permalink}

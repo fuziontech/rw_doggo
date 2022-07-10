@@ -105,6 +105,7 @@ export const recentDoggos = () => {
       createdAt: {
         gte: new Date(Date.now() - 24 * 60 * 60 * 1000),
       },
+      adoptedAt: null,
     },
   })
 }

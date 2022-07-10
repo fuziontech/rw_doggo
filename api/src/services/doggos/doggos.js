@@ -84,7 +84,7 @@ export const adoptedDoggos = () => {
   return db.doggo.findMany({
     where: {
       adoptedAt: {
-        not: null,
+        gte: new Date(Date.now() - 24 * 60 * 60 * 1000),
       },
     },
   })

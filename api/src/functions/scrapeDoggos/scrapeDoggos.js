@@ -1,4 +1,4 @@
-import { getAndUpdateDoggosFromSFSPCA } from 'src/lib/doggoUpdater'
+import { updateQueue } from 'src/lib/queue'
 
 /**
  * The handler function is your code that processes http request events.
@@ -18,7 +18,7 @@ import { getAndUpdateDoggosFromSFSPCA } from 'src/lib/doggoUpdater'
  */
 
 export const handler = async (event, context) => {
-  await getAndUpdateDoggosFromSFSPCA()
+  await updateQueue.add()
   return {
     statusCode: 200,
     headers: {

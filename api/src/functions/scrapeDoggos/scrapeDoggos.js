@@ -1,4 +1,5 @@
-import { getAndUpdateDoggosFromSFSPCA } from 'api/src/lib/doggoUpdater'
+import { getAndUpdateDoggosFromSFSPCA } from 'src/lib/doggoUpdater'
+
 /**
  * The handler function is your code that processes http request events.
  * You can use return and throw to send a response or error, respectively.
@@ -15,6 +16,7 @@ import { getAndUpdateDoggosFromSFSPCA } from 'api/src/lib/doggoUpdater'
  * @param { Context } context - contains information about the invocation,
  * function, and execution environment.
  */
+
 export const handler = async (event, context) => {
   await getAndUpdateDoggosFromSFSPCA()
   return {

@@ -1,4 +1,5 @@
 import { updateQueue } from 'src/lib/queue'
+import Sentry from 'src/lib/sentry'
 
 /**
  * The handler function is your code that processes http request events.
@@ -18,13 +19,25 @@ import { updateQueue } from 'src/lib/queue'
  */
 
 export const handler = async (event, context) => {
-  await updateQueue.add()
-  return {
-    statusCode: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+  try {
+    await updateQueue.add()
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
 
-    body: JSON.stringify({ success: true }),
+      body: JSON.stringify({ success: true }),
+    }
+  } catch (e) {
+    Sentry.captureException(e)
+    return {
+      statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify({ success: false }),
+    }
   }
 }

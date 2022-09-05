@@ -6,7 +6,8 @@ import { updateQueue } from 'api/src/lib/queue'
 import { schedule } from 'node-cron'
 
 export default async ({ _args }) => {
-  schedule('* * * * *', () => {
+  // Run every hour 1 minute after the hour
+  schedule('1 * * * *', () => {
     updateQueue.add()
   })
 

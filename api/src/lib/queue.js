@@ -1,5 +1,7 @@
 import Queue from 'bull'
 
-export const updateQueue = new Queue('updateQueue', {
-  redis: { url: process.env.REDIS_URL, socket: { family: 6 } },
+export const updateQueue = new Queue(
+  'updateQueue',
+  process.env.REDIS_URL, {
+  redis: { socket: { family: 6 } },
 })

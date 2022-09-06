@@ -32,12 +32,15 @@ FROM dependencies as api_build
 COPY api api
 RUN yarn rw build api
 
+COPY scripts scripts
+
 FROM dependencies
 
 ENV NODE_ENV production
 
 COPY --from=web_build /app/web/dist /app/web/dist
 COPY --from=api_build /app/api /app/api
+COPY --from=api_build /app/scripts /app/scripts
 COPY --from=api_build /app/node_modules/.prisma /app/node_modules/.prisma
 
 COPY .fly .fly
